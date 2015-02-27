@@ -1,5 +1,14 @@
+
+
+# ignore .DS_Store file
 .DS_Store
 
+# ignore self
+.gitignore
 
+# ignore invisible files
+/.sass-cache
 /.git
+
+# gulp files
 /node_modules/*
