@@ -2,4 +2,4 @@
 
 
 /.git
-/node_module
+/node_modules/*
