@@ -14,6 +14,8 @@
       "opa" : 0,
       "transY" : -10,
       fuwatComplete : function(){},
+
+      "resetButton" : false
     };
 
     var setting = $.extend( defaults, options );
@@ -30,7 +32,7 @@
 
     var fuwatText = wrapperDOM.find("span");
     var methods = {
-      init : function(options){
+      move : function(options){
         fuwatText.each(function(i){
           var _this = $(this);
           var baseDelayTime = setting.baseDelayTime;
@@ -53,12 +55,20 @@
           i++
         });
       },
-      reset : function(){
+      resetText : function(){
         fuwatText.css({ opacity: setting.opa, zIndex: 0, transform: "translate3d(0,"+ setting.transY +", 0)" });
       }
     }
 
-    methods.init();
+    methods.move();
+
+    if(setting.resetButton){
+      $("body").append("<button id='resetButton' style='position: fixed; top:20px; left: 20px;'>resetButton</button>");
+      $("#resetButton").on("click", function(){
+        methods.resetText();
+        setTimeout(function(){ methods.move(); }, 500);
+      }); 
+    }
 
   }
 })( jQuery )

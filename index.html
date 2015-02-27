@@ -16,12 +16,12 @@
   <div class="wrapper">
     <h1 class="fuwat">メロスは激怒した。必ず、かの邪智暴虐の王を除かなければならぬと決意した。</h1>
 
-    <!-- <h1 class="fuwat">笛を吹き、羊と遊んで暮して来た。</h1> -->
+    <h2 class="fuwat">笛を吹き、羊と遊んで暮して来た。</h1>
   </div>
 
   <script>
   $(function(){
-    setInterval($(".fuwat").fuwat({ fuwatComplete: function(){ console.log("complete!!!"); } }), 2000);
+    setInterval($(".fuwat").fuwat({ "resetButton": true, fuwatComplete: function(){ console.log("complete!!!"); } }), 2000);
   });
   </script>
 </body>
