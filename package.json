@@ -1,0 +1,30 @@
+{
+  "name": "brooksbrothers",
+  "version": "0.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "browser-sync": "~1.5.8",
+    "gulp": "~3.8.8",
+    "gulp-autoprefixer": "~1.0.1",
+    "gulp-cssmin": "~0.1.6",
+    "gulp-if": "~1.2.5",
+    "gulp-plumber": "~0.6.6",
+    "gulp-ruby-sass": "~0.7.1",
+    "gulp-util": "~3.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ficc/bbj_redfleece.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ficc/bbj_redfleece/issues"
+  },
+  "homepage": "https://github.com/ficc/bbj_redfleece"
+}
