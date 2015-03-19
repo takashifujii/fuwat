@@ -37,6 +37,18 @@ h2{
 	height: 40px;
 	top: 160px;
 }
+h3{
+	@extend %box;
+	width: 545px;
+	height: 40px;
+	top: 300px;
+}
+h4{
+	@extend %box;
+	width: 545px;
+	height: 40px;
+	top: 400px;
+}
 .fuwatText{
 	display: block;
 	float: left;

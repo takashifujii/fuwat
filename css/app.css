@@ -4,7 +4,7 @@ html, body {
   margin: 0;
   padding: 0; }
 
-h1, h2 {
+h1, h2, h3, h4 {
   position: absolute;
   top: 0;
   left: 0;
@@ -21,6 +21,16 @@ h2 {
   width: 545px;
   height: 40px;
   top: 160px; }
+
+h3 {
+  width: 545px;
+  height: 40px;
+  top: 300px; }
+
+h4 {
+  width: 545px;
+  height: 40px;
+  top: 400px; }
 
 .fuwatText {
   display: block;

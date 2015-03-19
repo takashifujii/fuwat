@@ -20,15 +20,19 @@
 
     var setting = $.extend( defaults, options );
     var wrapperDOM = $(".fuwat");
-    var textArray = wrapperDOM.text().split("");
 
-    // 一度消す
-    wrapperDOM.text("");
+    wrapperDOM.each(function(){
+      var _this = $(this);
+      var textArray = $(this).text().split("");
+      // 一度消す
+      _this.text("");
+      // 文字を配列に収納して、一つ一つを丁寧に、ドモホルンリンクルを見つめるようにspanの中へ
+      _.forEach( textArray, function(n){
+        _this.append("<span class='fuwatText' style='opacity: "+ setting.opa +"; z-index: 0; transform: translate3d(0, "+ setting.transY +", 0)'>" + n + "</span>");
+      } );
+    });
 
-    // 文字を配列に収納して、一つ一つを丁寧に、ドモホルンリンクルを見つめるようにspanの中へ
-    _.forEach( textArray, function(n){
-      wrapperDOM.append("<span class='fuwatText' style='opacity: "+ setting.opa +"; z-index: 0; transform: translate3d(0, "+ setting.transY +", 0)'>" + n + "</span>");
-    } );
+
 
     var fuwatText = wrapperDOM.find("span");
     var methods = {
