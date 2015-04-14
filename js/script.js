@@ -19,7 +19,7 @@
     };
 
     var setting = $.extend( defaults, options );
-    var wrapperDOM = $(".fuwat");
+    var wrapperDOM = $(this);
 
     wrapperDOM.each(function(){
       var _this = $(this);
@@ -36,6 +36,9 @@
 
     var fuwatText = wrapperDOM.find("span");
     var methods = {
+      init : function(){
+
+      },
       move : function(options){
         fuwatText.each(function(i){
           var _this = $(this);
@@ -50,6 +53,8 @@
                 step: function(num){
                   if( !$("html").hasClass('ie8') ){
                     _this.css({ transform: "translate3d( 0, " + ( setting.transY + (num * setting.transY * -1 )) + "px, 0 )" });
+                  } else {
+                    console.log("NOT WORKING FUWAT!");
                   }
                 },
                 complete: setting.fuwatComplete()
