@@ -1,7 +1,5 @@
 (function($){
-  var Fuwat = window.Fuwat || {};
-
-  Fuwat = (function() {
+  var Fuwat = (function() {
 
   	function Fuwat(element, options){
   		var _this = this;
@@ -28,27 +26,57 @@
   Fuwat.prototype = {
 
   	init : function(){
-  		this.confetti();
+      var _this = this;
+
+  		_this.wordSplit();
+      _this.setEvents();
   	},
 
   	setEvents : function(){
   		var _this = this;
+      var rButton = $("#resetButton");
+
+      _this.move();
+
+      rButton.on("click", function(){
+        _this.reset();
+        setTimeout(function(){ _this.move(); }, 300);
+      }); 
   	},
 
-  	confetti : function(){
+  	wordSplit : function(){
   		var _this = this;
   		var textArray =  _this.$fuwat.text().split("");
-  		console.log(textArray);
 
       _this.$fuwat.text("");
       for(var i=0; i<textArray.length; i++){
-      	_this.$fuwat.append("<span class='fuwatText' style='opacity: "+ _this.setting.opa +"; z-index: 0; transform: translate3d(0, "+ _this.setting.transY +", 0)'>" + textArray[i] + "</span>")
+      	_this.$fuwat.append("<span class='fuwatText' style='opacity: "+ _this.setting.opacity +"; z-index: 0; transform: translate3d(0, "+ _this.setting.transformY +", 0)'>" + textArray[i] + "</span>")
       }
   	},
 
   	move : function(){
   		var _this = this;
 
+      _this.$fuwat.find(".fuwatText").each(function(i){
+        var $this = $(this);
+        var baseDelayTime = _this.setting.baseDelayTime;
+        var delayTime = baseDelayTime * i;
+
+        setTimeout(function(){
+          $this.stop(false, false).animate(
+            { zIndex : 1, opacity : 1 },
+            {
+              duration : _this.setting.duration,
+              easing : _this.setting.easing,
+              step : function(num){
+                $this.css({ transform : "translate3d(0 ," + (_this.setting.transformY + ( num * _this.setting.transformY * -1 )) + "px ,0)" });
+              },
+              complete : _this.setting.fuwatComplete()
+            }
+          )
+        }, delayTime);
+        i++;
+      });
   	},
 
   	forRepeat : function(){
@@ -59,6 +87,7 @@
   	reset : function(){
   		var _this = this;
 
+      $(".fuwatText").css({ opacity: _this.setting.opacity, zIndex: 0, transform: "translate3d(0,"+ _this.setting.transformY +", 0)" });
   	}
 
   }

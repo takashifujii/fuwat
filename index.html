@@ -13,6 +13,7 @@
   <script src="js/fuwat.js"></script>
 </head>
 <body>
+  <button id='resetButton' style='position: fixed; top:20px; left: 20px;'>resetButton</button>
   <div class="wrapper">
     <h1 class="fuwat">メロスは激怒した。必ず、かの邪智暴虐の王を除かなければならぬと決意した。</h1>
 
@@ -25,8 +26,13 @@
 
   <script>
   $(function(){
-    $(".fuwat").fuwat({ fuwatComplete: function(){ console.log("complete!!!"); } });
 
+    $("body").on("mouseup", function(){
+      $(".fuwat").fuwat();  
+    })
+    // $(".fuwat").fuwat({ fuwatComplete: function(){ console.log("complete!!!"); }, resetButton: true });
+    var test = $("body").click();
+    console.log(test);
   });
   </script>
 </body>
