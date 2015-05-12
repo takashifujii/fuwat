@@ -8,7 +8,6 @@
   <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <script src="http://www.google.com/jsapi"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.3.1/lodash.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
   <script src="js/fuwat.js"></script>
 </head>
@@ -28,11 +27,8 @@
   $(function(){
 
     $("body").on("mouseup", function(){
-      $(".fuwat").fuwat();  
+      $(".fuwat").fuwat({ fuwatComplete: function(){ console.log("complete!!!"); }, resetButton: true });
     })
-    // $(".fuwat").fuwat({ fuwatComplete: function(){ console.log("complete!!!"); }, resetButton: true });
-    var test = $("body").click();
-    console.log(test);
   });
   </script>
 </body>

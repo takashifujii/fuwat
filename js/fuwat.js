@@ -79,11 +79,6 @@
       });
   	},
 
-  	forRepeat : function(){
-  		var _this = this;
-
-  	},
-
   	reset : function(){
   		var _this = this;
 
