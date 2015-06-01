@@ -14,23 +14,32 @@
       "opa" : 0,
       "transY" : -10,
       fuwatComplete : function(){},
+
+      "resetButton" : false
     };
 
     var setting = $.extend( defaults, options );
-    var wrapperDOM = $(".fuwat");
-    var textArray = wrapperDOM.text().split("");
+    var wrapperDOM = $(this);
 
-    // 一度消す
-    wrapperDOM.text("");
+    wrapperDOM.each(function(){
+      var _this = $(this);
+      var textArray = $(this).text().split("");
+      // 一度消す
+      _this.text("");
+      // 文字を配列に収納して、一つ一つを丁寧に、ドモホルンリンクルを見つめるようにspanの中へ
+      _.forEach( textArray, function(n){
+        _this.append("<span class='fuwatText' style='opacity: "+ setting.opa +"; z-index: 0; transform: translate3d(0, "+ setting.transY +", 0)'>" + n + "</span>");
+      } );
+    });
 
-    // 文字を配列に収納して、一つ一つを丁寧に、ドモホルンリンクルを見つめるようにspanの中へ
-    _.forEach( textArray, function(n){
-      wrapperDOM.append("<span class='fuwatText' style='opacity: "+ setting.opa +"; z-index: 0; transform: translate3d(0, "+ setting.transY +", 0)'>" + n + "</span>");
-    } );
+
 
     var fuwatText = wrapperDOM.find("span");
     var methods = {
-      init : function(options){
+      init : function(){
+
+      },
+      move : function(options){
         fuwatText.each(function(i){
           var _this = $(this);
           var baseDelayTime = setting.baseDelayTime;
@@ -44,6 +53,8 @@
                 step: function(num){
                   if( !$("html").hasClass('ie8') ){
                     _this.css({ transform: "translate3d( 0, " + ( setting.transY + (num * setting.transY * -1 )) + "px, 0 )" });
+                  } else {
+                    console.log("NOT WORKING FUWAT!");
                   }
                 },
                 complete: setting.fuwatComplete()
@@ -53,12 +64,20 @@
           i++
         });
       },
-      reset : function(){
+      resetText : function(){
         fuwatText.css({ opacity: setting.opa, zIndex: 0, transform: "translate3d(0,"+ setting.transY +", 0)" });
       }
     }
 
-    methods.init();
+    methods.move();
+
+    if(setting.resetButton){
+      $("body").append("<button id='resetButton' style='position: fixed; top:20px; left: 20px;'>resetButton</button>");
+      $("#resetButton").on("click", function(){
+        methods.resetText();
+        setTimeout(function(){ methods.move(); }, 500);
+      }); 
+    }
 
   }
 })( jQuery )
